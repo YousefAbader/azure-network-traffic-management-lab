@@ -98,57 +98,125 @@ The solution combines Azure Load Balancer and Azure Application Gateway in the s
 6. Requests to `/video/*` are routed to the video backend pool
 7. Backend health is validated from the Application Gateway monitoring view
 
-### Architecture diagram
+## Architecture
+
+This lab environment demonstrates Azure Layer 4 and Layer 7 traffic management using a public Standard Load Balancer and a Standard_v2 Application Gateway deployed within the same virtual network.
+
+### Architecture Diagram
 
 [View Architecture Diagram](./diagrams/azure-network-traffic-management-architecture.png)
 
 ![Architecture Diagram](./diagrams/azure-network-traffic-management-architecture.png)
 
+### Architecture Notes
+
+- The base environment is deployed using ARM templates
+- The virtual network hosts the backend virtual machines and the dedicated Application Gateway subnet
+- The public Standard Load Balancer distributes HTTP traffic across backend virtual machines
+- The Standard_v2 Application Gateway provides Layer 7 routing and path-based request forwarding
+- Requests to `/image/*` are routed to the image backend
+- Requests to `/video/*` are routed to the video backend
+
 ---
 
 ## Screenshots
 
-> Replace the placeholder files below with your actual screenshots after upload.
+### 1) ARM Template Deployment
 
-### ARM Template Deployment
+#### Custom template deployment
 [View Image](./screenshots/01-custom-template-deployment.png)
 
-![ARM Template Deployment](./screenshots/01-custom-template-deployment.png)
+![Custom Template Deployment](./screenshots/01-custom-template-deployment.png)
 
-### Resource Group Overview
-[View Image](./screenshots/02-resource-group-overview.png)
+#### Template review and validation
+[View Image](./screenshots/02-template-review-validation.png)
 
-![Resource Group Overview](./screenshots/02-resource-group-overview.png)
+![Template Review and Validation](./screenshots/02-template-review-validation.png)
 
-### Load Balancer Overview
-[View Image](./screenshots/05-load-balancer-overview.png)
+---
 
-![Load Balancer Overview](./screenshots/05-load-balancer-overview.png)
+### 2) Resource Group Overview
 
-### Load Balancer Rule and Health Probe
-[View Image](./screenshots/07-load-balancer-rule-health-probe.png)
+#### Resource group resources after deployment
+[View Image](./screenshots/03-resource-group-overview.png)
 
-![Load Balancer Rule and Health Probe](./screenshots/07-load-balancer-rule-health-probe.png)
+![Resource Group Overview](./screenshots/03-resource-group-overview.png)
 
-### Application Gateway Overview
+---
+
+### 3) Azure Load Balancer Configuration
+
+#### Load Balancer overview
+[View Image](./screenshots/04-load-balancer-overview.png)
+
+![Load Balancer Overview](./screenshots/04-load-balancer-overview.png)
+
+#### Load Balancer backend pool
+[View Image](./screenshots/05-load-balancer-backend-pool.png)
+
+![Load Balancer Backend Pool](./screenshots/05-load-balancer-backend-pool.png)
+
+#### Load Balancer rule and health probe
+[View Image](./screenshots/06-load-balancer-rule-health-probe.png)
+
+![Load Balancer Rule and Health Probe](./screenshots/06-load-balancer-rule-health-probe.png)
+
+#### Load Balancer validation - VM0 response
+[View Image](./screenshots/07-load-balancer-validation-vm0.png)
+
+![Load Balancer Validation VM0](./screenshots/07-load-balancer-validation-vm0.png)
+
+#### Load Balancer validation - VM1 response
+[View Image](./screenshots/08-load-balancer-validation-vm1.png)
+
+![Load Balancer Validation VM1](./screenshots/08-load-balancer-validation-vm1.png)
+
+---
+
+### 4) Virtual Network and Subnet Preparation
+
+#### Virtual network subnets overview
+[View Image](./screenshots/09-vnet-subnets-overview.png)
+
+![Virtual Network Subnets Overview](./screenshots/09-vnet-subnets-overview.png)
+
+---
+
+### 5) Azure Application Gateway Configuration
+
+#### Application Gateway overview
 [View Image](./screenshots/10-app-gateway-overview.png)
 
 ![Application Gateway Overview](./screenshots/10-app-gateway-overview.png)
 
-### Application Gateway Backend Health
+#### Application Gateway backend pools
+[View Image](./screenshots/11-app-gateway-backend-pools.png)
+
+![Application Gateway Backend Pools](./screenshots/11-app-gateway-backend-pools.png)
+
+#### Application Gateway routing rules
+[View Image](./screenshots/12-app-gateway-routing-rules.png)
+
+![Application Gateway Routing Rules](./screenshots/12-app-gateway-routing-rules.png)
+
+#### Application Gateway backend health
 [View Image](./screenshots/13-app-gateway-backend-health.png)
 
 ![Application Gateway Backend Health](./screenshots/13-app-gateway-backend-health.png)
 
-### Image Routing Validation
+---
+
+### 6) Path-Based Routing Validation
+
+#### Image path routing test
 [View Image](./screenshots/14-app-gateway-image-routing-test.png)
 
-![Image Routing Validation](./screenshots/14-app-gateway-image-routing-test.png)
+![Image Path Routing Test](./screenshots/14-app-gateway-image-routing-test.png)
 
-### Video Routing Validation
+#### Video path routing test
 [View Image](./screenshots/15-app-gateway-video-routing-test.png)
 
-![Video Routing Validation](./screenshots/15-app-gateway-video-routing-test.png)
+![Video Path Routing Test](./screenshots/15-app-gateway-video-routing-test.png)
 
 ---
 
