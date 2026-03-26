@@ -100,17 +100,30 @@ The solution combines Azure Load Balancer and Azure Application Gateway in the s
 
 ## Architecture
 
-This lab environment demonstrates Azure Layer 4 and Layer 7 traffic management using a public Standard Load Balancer and a Standard_v2 Application Gateway deployed within the same virtual network.
+This lab demonstrates Azure traffic management using two core services:
 
-### Architecture Diagram
+- **Azure Load Balancer** for Layer 4 traffic distribution
+- **Azure Application Gateway** for Layer 7 application-aware routing
 
-[View Architecture Diagram](./diagrams/azure-network-traffic-management-architecture.png)
+The environment was deployed in **Switzerland North** and validated through backend health checks, public endpoint testing, and path-based routing verification.
 
-![Architecture Diagram](./diagrams/azure-network-traffic-management-architecture.png)
+### Technical Diagrams
+
+#### 1) Azure Load Balancer Flow Diagram
+
+[View Diagram](./diagrams/azure-load-balancer-flow-diagram.png)
+
+![Azure Load Balancer Flow Diagram](./diagrams/azure-load-balancer-flow-diagram.png)
+
+#### 2) Azure Application Gateway Routing Diagram
+
+[View Diagram](./diagrams/azure-application-gateway-routing-diagram.png)
+
+![Azure Application Gateway Routing Diagram](./diagrams/azure-application-gateway-routing-diagram.png)
 
 ### Architecture Notes
 
-- The base environment is deployed using ARM templates
+- The base infrastructure is deployed using ARM templates
 - The virtual network hosts the backend virtual machines and the dedicated Application Gateway subnet
 - The public Standard Load Balancer distributes HTTP traffic across backend virtual machines
 - The Standard_v2 Application Gateway provides Layer 7 routing and path-based request forwarding
@@ -128,57 +141,57 @@ This lab environment demonstrates Azure Layer 4 and Layer 7 traffic management u
 
 ![Custom Template Deployment](./screenshots/01-custom-template-deployment.png)
 
-#### Template review and validation
-[View Image](./screenshots/02-template-review-validation.png)
-
-![Template Review and Validation](./screenshots/02-template-review-validation.png)
-
 ---
 
 ### 2) Resource Group Overview
 
 #### Resource group resources after deployment
-[View Image](./screenshots/03-resource-group-overview.png)
+[View Image](./screenshots/02-resource-group-overview.png)
 
-![Resource Group Overview](./screenshots/03-resource-group-overview.png)
-
----
-
-### 3) Azure Load Balancer Configuration
-
-#### Load Balancer overview
-[View Image](./screenshots/04-load-balancer-overview.png)
-
-![Load Balancer Overview](./screenshots/04-load-balancer-overview.png)
-
-#### Load Balancer backend pool
-[View Image](./screenshots/05-load-balancer-backend-pool.png)
-
-![Load Balancer Backend Pool](./screenshots/05-load-balancer-backend-pool.png)
-
-#### Load Balancer rule and health probe
-[View Image](./screenshots/06-load-balancer-rule-health-probe.png)
-
-![Load Balancer Rule and Health Probe](./screenshots/06-load-balancer-rule-health-probe.png)
-
-#### Load Balancer validation - VM0 response
-[View Image](./screenshots/07-load-balancer-validation-vm0.png)
-
-![Load Balancer Validation VM0](./screenshots/07-load-balancer-validation-vm0.png)
-
-#### Load Balancer validation - VM1 response
-[View Image](./screenshots/08-load-balancer-validation-vm1.png)
-
-![Load Balancer Validation VM1](./screenshots/08-load-balancer-validation-vm1.png)
+![Resource Group Overview](./screenshots/02-resource-group-overview.png)
 
 ---
 
-### 4) Virtual Network and Subnet Preparation
+### 3) Virtual Network Overview
+
+#### Virtual network overview
+[View Image](./screenshots/03-vnet-overview.png)
+
+![Virtual Network Overview](./screenshots/03-vnet-overview.png)
 
 #### Virtual network subnets overview
-[View Image](./screenshots/09-vnet-subnets-overview.png)
+[View Image](./screenshots/04-vnet-subnets-overview.png)
 
-![Virtual Network Subnets Overview](./screenshots/09-vnet-subnets-overview.png)
+![Virtual Network Subnets Overview](./screenshots/04-vnet-subnets-overview.png)
+
+---
+
+### 4) Azure Load Balancer Configuration
+
+#### Load Balancer overview
+[View Image](./screenshots/05-load-balancer-overview.png)
+
+![Load Balancer Overview](./screenshots/05-load-balancer-overview.png)
+
+#### Load Balancer backend pool
+[View Image](./screenshots/06-load-balancer-backend-pool.png)
+
+![Load Balancer Backend Pool](./screenshots/06-load-balancer-backend-pool.png)
+
+#### Load Balancer rule and health probe
+[View Image](./screenshots/07-load-balancer-rule-health-probe.png)
+
+![Load Balancer Rule and Health Probe](./screenshots/07-load-balancer-rule-health-probe.png)
+
+#### Load Balancer validation - VM0 response
+[View Image](./screenshots/08-load-balancer-validation-vm0.png)
+
+![Load Balancer Validation VM0](./screenshots/08-load-balancer-validation-vm0.png)
+
+#### Load Balancer validation - VM1 response
+[View Image](./screenshots/09-load-balancer-validation-vm1.png)
+
+![Load Balancer Validation VM1](./screenshots/09-load-balancer-validation-vm1.png)
 
 ---
 
